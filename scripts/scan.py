@@ -5,9 +5,10 @@ POWER-UP DAILY scanner.
 Once a day:
   1. Reads the RSS/Atom feeds in scripts/sources.json and keeps items from the last ~36 hours
      that haven't been seen before.
-  2. Asks Claude to pick the genuinely new AI abilities, rate each one 1-5 on Reach / Leap /
-     Replace (the inputs to model.js), and write the hype copy: headline, "THIS MEANS...",
-     the boss it defeats, and a 30-second announcer script.
+  2. An editor picks the genuinely new AI abilities, rates each one 1-5 on Reach / Leap /
+     Replace (the inputs to model.js), and writes the hype copy: headline, "THIS MEANS...",
+     the boss it defeats, and a 30-second announcer script. The editor is the free keyword
+     rules in scripts/rules.py, or Claude when ANTHROPIC_API_KEY is set (falls back to rules on error).
   3. Saves everything to data/state.json (the permanent record), data/days/<date>.json,
      and regenerates data.js, which the website reads.
 
@@ -15,7 +16,7 @@ Rarity, hype %, XP and the AI level are NOT decided here. model.js calculates th
 browser from the ratings, so the math lives in one place.
 
 Usage:
-  python3 scripts/scan.py              # full run (needs ANTHROPIC_API_KEY)
+  python3 scripts/scan.py              # full run (Claude if ANTHROPIC_API_KEY is set, else free rules)
   python3 scripts/scan.py --dry-run    # just fetch feeds and list candidates, no API call, no writes
   python3 scripts/scan.py --out-dir /tmp/test --from-json saved.json   # test the writer offline
 """
@@ -25,6 +26,7 @@ import argparse
 import datetime as dt
 import html
 import json
+import os
 import re
 import ssl
 import sys
@@ -33,7 +35,9 @@ import xml.etree.ElementTree as ET
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+import rules  # free rule-based editor (scripts/rules.py)
+
+ROOT =Path(__file__).resolve().parent.parent
 SOURCES = ROOT / "scripts" / "sources.json"
 
 MODEL = "claude-opus-5-5"
@@ -294,6 +298,8 @@ def main() -> int:
     ap.add_argument("--dry-run", action="store_true", help="fetch feeds and list candidates only")
     ap.add_argument("--lookback-hours", type=int, default=36)
     ap.add_argument("--max-candidates", type=int, default=80)
+    ap.add_argument("--editor", choices=["auto", "claude", "rules"], default="auto",
+                    help="auto (default): Claude if ANTHROPIC_API_KEY is set, otherwise free rules")
     ap.add_argument("--from-json", type=Path, help="use saved Claude output instead of calling the API (testing)")
     ap.add_argument("--out-dir", type=Path, default=ROOT, help="where to write data.js and data/ (default: project)")
     args = ap.parse_args()
@@ -304,7 +310,8 @@ def main() -> int:
     seen = set(state["seen"])
 
     cands, report = gather(args.lookback_hours, seen)
-    cands = cands[: args.max_candidates]
+    all_cands = cands                       # the free rules can read everything
+    cands = cands[: args.max_candidates]    # the cap only limits what is sent to Claude (cost)
     print("Feeds:\n" + "\n".join(report))
     print(f"{len(cands)} fresh candidates")
 
@@ -318,8 +325,25 @@ def main() -> int:
         return 0
 
     recent = [h["headline"] for h in state["history"][-60:]]
-    raw = json.loads(args.from_json.read_text())["powerups"] if args.from_json else ask_claude(cands, recent, today)
+    editor = args.editor
+    if editor == "auto":
+        editor = "claude" if os.environ.get("ANTHROPIC_API_KEY", "").strip() else "rules"
+    if args.from_json:
+        editor, raw = "fixture", json.loads(args.from_json.read_text())["powerups"]
+    elif editor == "claude":
+        try:
+            raw = ask_claude(cands, recent, today)
+        except Exception as e:   # never miss a day: fall back to the free rules
+            print(f"Claude editor failed ({type(e).__name__}: {e}); falling back to rules")
+            editor, cands = "rules", all_cands
+            raw = rules.edit(cands)
+    else:
+        cands = all_cands
+        raw = rules.edit(cands)
+    print(f"Editor: {editor}")
     drops = validate(raw, cands, today, {h["id"] for h in state["history"]})
+    for d in drops:
+        d["editor"] = editor
 
     state["history"].extend(drops)
     state["seen"] = (state["seen"] + [c["link"] for c in cands])[-5000:]   # every candidate counts as seen

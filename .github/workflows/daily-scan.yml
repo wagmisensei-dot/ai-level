@@ -1,11 +1,16 @@
 # Runs the scanner every day and commits the new data.js, so a GitHub Pages site updates itself.
-# Needs one repository secret: ANTHROPIC_API_KEY (Settings → Secrets and variables → Actions).
+# Free by default: with no secret set it uses the rule-based editor (scripts/rules.py).
+# Optional upgrade: add a repository secret ANTHROPIC_API_KEY and it switches to Claude automatically.
 name: Daily power-up scan
 
 on:
   schedule:
     - cron: "0 13 * * *"   # 13:00 UTC daily (US morning, Cairo afternoon)
   workflow_dispatch:        # "Run workflow" button for a manual scan
+    inputs:
+      lookback_hours:
+        description: "How far back to look for news (hours)"
+        default: "36"
 
 permissions:
   contents: write
@@ -19,7 +24,7 @@ jobs:
         with:
           python-version: "3.13"
       - run: pip install -r requirements.txt
-      - run: python scripts/scan.py
+      - run: python scripts/scan.py --lookback-hours "${{ inputs.lookback_hours || '36' }}"
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       - name: Commit new power-ups
