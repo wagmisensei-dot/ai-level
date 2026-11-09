@@ -235,7 +235,7 @@
       gainXP(p.rarity === "LEGENDARY" ? 25 : p.rarity === "EPIC" ? 15 : 10);
       if (p.rarity === "LEGENDARY") confetti(50);
     } else {
-      const text = `🎮 NEW AI POWER UNLOCKED: ${p.headline}! THIS MEANS ${p.means}! AI is now LEVEL ${lvlInt}. Try it: ${p.url} #PowerUpDaily`;
+      const text = `🎮 NEW AI POWER UNLOCKED: ${p.headline}! THIS MEANS ${p.means}! AI is now LEVEL ${lvlInt}. Try it: ${p.url} #AILevel`;
       try { await navigator.clipboard.writeText(text); toast("📋 COPIED! GO SPREAD THE HYPE!"); }
       catch { toast(text); }
     }

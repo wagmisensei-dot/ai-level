@@ -1,4 +1,4 @@
-# ▲ POWER-UP DAILY
+# ▲ AI LEVEL
 
 New AI abilities, announced like a video game, plus a running **AI LEVEL** (0–100). At 100, AI TAKES OVER.
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-POWER-UP DAILY scanner.
+AI LEVEL scanner.
 
 Once a day:
   1. Reads the RSS/Atom feeds in scripts/sources.json and keeps items from the last ~36 hours
@@ -45,7 +45,7 @@ DOMAINS = ["KNOWLEDGE", "CODING", "CREATIVE", "LANGUAGE", "AUTONOMY", "BUSINESS"
 CATEGORIES = ["VIDEO", "IMAGE", "AUDIO", "VOICE", "CODING", "AGENTS", "PRODUCTIVITY",
               "RESEARCH", "ROBOTICS", "CHAT", "OTHER"]
 MAX_DROPS_PER_DAY = 12
-USER_AGENT = "PowerUpDailyScanner/0.1 (RSS reader)"
+USER_AGENT = "AILevelScanner/0.1 (RSS reader)"
 
 
 # ---------------------------------------------------------------- feeds
@@ -137,7 +137,7 @@ def gather(lookback_hours: int, seen: set[str]) -> tuple[list[dict], list[str]]:
 
 # ---------------------------------------------------------------- Claude
 
-SYSTEM = f"""You are the editor of POWER-UP DAILY, a video-game themed site that announces new AI abilities
+SYSTEM = f"""You are the editor of AI LEVEL, a video-game themed site that announces new AI abilities
 like a hyped-up esports announcer. Every day you get a list of fresh news items from AI feeds.
 
 YOUR JOB
