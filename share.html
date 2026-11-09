@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>AI Level share card</title>
+<!--
+  Renders ONE social-media frame, captured by scripts/media.py with a headless browser.
+  ?view=level|card|outro  &id=<power-up id>  &format=portrait (1080x1350) | story (1080x1920)
+  Exposes window.SHARE_INFO (level, delta, items...) so the script can write captions and narration.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0620; --panel: #1b0f47; --line: #3a2a7a; --text: #f2ecff; --muted: #b8a9e6;
+    --pink: #ff2e88; --cyan: #22e6ff; --yellow: #ffe14d; --green: #4dff9a;
+    --common: #9aa4c4; --rare: #3fa7ff; --epic: #c25bff; --legendary: #ffb12e;
+    --pixel: "Press Start 2P", monospace; --body: "Rubik", sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body.story, body.story html { height: 1920px; }
+  body {
+    color: var(--text); font-family: var(--body);
+    background:
+      radial-gradient(900px 600px at 85% 0%, #3b0f6b 0%, transparent 60%),
+      radial-gradient(800px 600px at 0% 100%, #0d3a6b 0%, transparent 60%),
+      linear-gradient(#0b0620, #150a38);
+    background-color: var(--bg);
+    display: flex; flex-direction: column; padding: 64px 72px;
+    position: relative;
+  }
+  body::after {   /* scanlines */
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(to bottom, rgba(255,255,255,.035) 0 2px, transparent 2px 6px);
+  }
+  .top { display: flex; align-items: center; justify-content: space-between; }
+  .brand { display: flex; align-items: center; gap: 18px; font-family: var(--pixel); font-size: 34px; }
+  .brand em { font-style: normal; color: var(--pink); }
+  .brand svg { width: 64px; height: 64px; filter: drop-shadow(4px 4px 0 #000); }
+  .date { font-family: var(--pixel); font-size: 20px; color: var(--muted); }
+  main { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .foot { display: flex; justify-content: space-between; align-items: center; font-family: var(--pixel); font-size: 20px; color: var(--muted); }
+  .foot b { color: var(--yellow); }
+
+  /* LEVEL view */
+  .kicker { font-family: var(--pixel); font-size: 34px; color: var(--cyan); text-align: center; }
+  .giant { font-family: var(--pixel); font-size: 108px; line-height: 1.15; text-align: center; color: var(--yellow);
+           white-space: nowrap; text-shadow: 8px 8px 0 var(--pink), 0 0 60px rgba(255,225,77,.45); margin: 34px 0 26px; }
+  .story .giant { font-size: 112px; margin: 60px 0 40px; }
+  .delta { font-family: var(--pixel); font-size: 34px; text-align: center; }
+  .delta b { color: var(--green); }
+  .bar { position: relative; height: 72px; border: 6px solid var(--yellow); background: #0b0620; margin: 90px 0 24px; box-shadow: 10px 10px 0 #000; }
+  .bar i, .bar s { position: absolute; top: 6px; bottom: 6px; display: block; }
+  .bar i { left: 6px; background: repeating-linear-gradient(90deg, var(--yellow) 0 26px, var(--legendary) 26px 34px); }
+  .bar s { background: var(--green); box-shadow: 0 0 20px var(--green); }
+  .bar::after { content: ""; position: absolute; right: 0; top: 0; bottom: 0; width: 5%;
+                background: repeating-linear-gradient(45deg, rgba(255,46,136,.6) 0 10px, transparent 10px 20px); }
+  .you { position: absolute; top: -70px; transform: translateX(-50%); font-family: var(--pixel); font-size: 22px;
+         background: var(--green); color: #0b0620; padding: 10px 12px; }
+  .goal { margin: 50px auto 0; display: flex; align-items: center; gap: 22px; font-family: var(--pixel); font-size: 30px;
+          color: var(--pink); border: 6px solid var(--pink); background: rgba(255,46,136,.14); padding: 26px 34px;
+          box-shadow: 10px 10px 0 #000, 0 0 40px rgba(255,46,136,.6); }
+  .goal .crown { font-size: 64px; }
+  .goal b { color: var(--text); font-size: 38px; text-shadow: 4px 4px 0 var(--pink); }
+  .togo { text-align: center; font-family: var(--pixel); font-size: 26px; color: var(--muted); margin-top: 36px; }
+  .togo b { color: var(--yellow); }
+  .drops { margin-top: 48px; display: flex; flex-direction: column; gap: 18px; }
+  .drop { display: flex; gap: 18px; align-items: center; font-size: 28px; font-weight: 800; }
+  .drop span:last-child { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .story .drop { font-size: 32px; }
+  .story .drop span:last-child { -webkit-line-clamp: 2; }
+  .drop .tag { font-family: var(--pixel); font-size: 16px; padding: 8px 10px; color: #0b0620; flex: 0 0 auto; }
+
+  /* CARD view */
+  .card { border: 8px solid var(--r); background: linear-gradient(180deg, rgba(255,255,255,.05), transparent 40%), var(--panel);
+          box-shadow: 14px 14px 0 #000, 0 0 60px -10px var(--r); padding: 54px; display: flex; flex-direction: column; gap: 30px; }
+  .card-top { display: flex; justify-content: space-between; align-items: center; }
+  .rar { font-family: var(--pixel); font-size: 26px; padding: 12px 16px; background: var(--r); color: #0b0620; }
+  .cat { font-family: var(--pixel); font-size: 22px; color: var(--muted); }
+  .unlocked { font-family: var(--pixel); font-size: 26px; color: var(--green); }
+  .card h1 { font-size: 66px; line-height: 1.08; font-weight: 800; }
+  .desc { font-size: 32px; line-height: 1.35; color: var(--muted); }
+  .means { background: #0b0620; border-left: 14px solid var(--yellow); padding: 28px; }
+  .means small { display: block; font-family: var(--pixel); font-size: 20px; color: var(--yellow); margin-bottom: 16px; }
+  .means p { font-size: 44px; line-height: 1.12; font-weight: 800; color: var(--yellow); }
+  .boss { display: flex; align-items: center; gap: 18px; font-size: 32px; }
+  .boss .ko { font-family: var(--pixel); font-size: 20px; background: #ff6b6b; color: #0b0620; padding: 10px 12px; }
+  .boss s { color: #ff6b6b; text-decoration-thickness: 4px; }
+  .hype { display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: center; font-family: var(--pixel); font-size: 20px; color: var(--muted); }
+  .hype .hb { height: 26px; border: 4px solid var(--line); background: #0b0620; }
+  .hype .hb i { display: block; height: 100%; background: linear-gradient(90deg, var(--green), var(--yellow), var(--pink)); }
+  .hype b { color: var(--pink); font-size: 26px; }
+  .xp { font-family: var(--pixel); font-size: 22px; color: var(--green); }
+
+  /* OUTRO view */
+  .follow { font-family: var(--pixel); font-size: 64px; line-height: 1.4; text-align: center; color: var(--yellow); text-shadow: 8px 8px 0 var(--pink); }
+  .follow-sub { font-family: var(--pixel); font-size: 28px; text-align: center; color: var(--cyan); margin-top: 40px; line-height: 1.6; }
+  .url { font-family: var(--pixel); font-size: 26px; text-align: center; color: var(--text); margin-top: 60px; border: 4px dashed var(--cyan); padding: 24px; }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+      <g fill="#ffe14d"><rect x="2" y="1" width="12" height="1"/><rect x="1" y="2" width="14" height="8"/><rect x="2" y="10" width="12" height="1"/><rect x="3" y="11" width="10" height="1"/><rect x="4" y="12" width="8" height="1"/><rect x="5" y="13" width="6" height="1"/><rect x="6" y="14" width="4" height="1"/><rect x="7" y="15" width="2" height="1"/></g>
+      <g fill="#ff2e88"><rect x="3" y="2" width="10" height="1"/><rect x="2" y="3" width="12" height="7"/><rect x="3" y="10" width="10" height="1"/><rect x="4" y="11" width="8" height="1"/><rect x="5" y="12" width="6" height="1"/><rect x="6" y="13" width="4" height="1"/><rect x="7" y="14" width="2" height="1"/></g>
+      <g fill="#c4176a"><rect x="2" y="8" width="12" height="2"/><rect x="3" y="10" width="10" height="1"/><rect x="4" y="11" width="8" height="1"/><rect x="5" y="12" width="6" height="1"/><rect x="6" y="13" width="4" height="1"/><rect x="7" y="14" width="2" height="1"/></g>
+      <g fill="#fff"><rect x="7" y="3" width="2" height="1"/><rect x="6" y="4" width="4" height="1"/><rect x="5" y="5" width="6" height="1"/><rect x="4" y="6" width="8" height="1"/><rect x="6" y="7" width="4" height="4"/></g>
+      <rect x="6" y="11" width="4" height="1" fill="#22e6ff"/>
+    </svg>
+    <span>AI <em>LEVEL</em></span>
+  </div>
+  <span class="date" id="date"></span>
+</header>
+<main id="main"></main>
+<footer class="foot"><span>wagmisensei-dot.github.io/ai-level</span><span>AI LVL <b id="footLvl"></b></span></footer>
+
+<script src="model.js"></script>
+<script src="data.js"></script>
+<script>
+(() => {
+  const q = new URLSearchParams(location.search);
+  const view = q.get("view") || "level", format = q.get("format") || "portrait";
+  if (format === "story") document.body.classList.add("story");
+  if (format === "story") document.documentElement.style.height = "1920px";
+
+  const data = window.POWERUP_DATA, M = window.AILevel;
+  const model = M.compute(data.powerups, data.history || []);
+  const items = [...model.powerups].sort((a, b) => b.impact - a.impact);
+  const dom = Object.fromEntries(model.domains.map(d => [d.id, d]));
+  const lvl = model.after.level, lvlInt = Math.floor(lvl), before = model.before.level;
+  const f1 = n => n.toFixed(1);
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const RC = { LEGENDARY: "var(--legendary)", EPIC: "var(--epic)", RARE: "var(--rare)", COMMON: "var(--common)" };
+
+  document.getElementById("date").textContent = data.updated || "";
+  document.getElementById("footLvl").textContent = lvlInt;
+  const main = document.getElementById("main");
+
+  if (view === "level") {
+    const top = items.slice(0, format === "story" ? 5 : 3);
+    main.innerHTML = `
+      <p class="kicker">⚡ AI HAS REACHED ⚡</p>
+      <p class="giant">LEVEL ${lvlInt}</p>
+      <p class="delta">AFTER TODAY'S XP DROP <b>+${f1(model.delta)}</b></p>
+      <div class="bar"><i style="width:calc(${before}% - 12px)"></i><s style="left:calc(${before}% - 6px);width:${model.delta}%"></s>
+        <span class="you" style="left:${lvl}%">LVL ${f1(lvl)}</span></div>
+      <div class="goal"><span class="crown">👑</span><span><b>LVL 100</b><br><br>AI TAKES OVER</span></div>
+      <p class="togo"><b>${100 - lvlInt}</b> LEVELS TO GO</p>
+      <div class="drops">${top.map(p => `<div class="drop"><span class="tag" style="background:${RC[p.rarity]}">${p.rarity}</span><span>${esc(p.headline)}</span></div>`).join("")}</div>`;
+  } else if (view === "card") {
+    const p = items.find(x => x.id === q.get("id")) || items[0];
+    main.innerHTML = `
+      <article class="card" style="--r:${RC[p.rarity]}">
+        <div class="card-top"><span class="rar">${p.rarity}</span><span class="cat">${esc(p.category)}</span></div>
+        <p class="unlocked">▶ NEW ABILITY UNLOCKED</p>
+        <h1>${esc(p.headline)}</h1>
+        <p class="desc">${esc(p.desc)}</p>
+        <div class="means"><small>⚡ THIS MEANS…</small><p>${esc(p.means)}!</p></div>
+        <div class="boss"><span class="ko">K.O.</span><s>${esc(p.boss)}</s></div>
+        <div class="hype"><span>HYPE</span><div class="hb"><i style="width:${p.hype}%"></i></div><b>${p.hype}</b></div>
+        <p class="xp">+${f1(p.xp)} XP → ${esc(dom[p.domain].name.toUpperCase())}</p>
+      </article>`;
+  } else {
+    main.innerHTML = `
+      <p class="giant">LVL ${lvlInt}</p>
+      <p class="follow">FOLLOW FOR DAILY<br>AI LEVEL-UPS</p>
+      <p class="follow-sub">👑 ${100 - lvlInt} LEVELS UNTIL<br>AI TAKES OVER</p>
+      <p class="url">wagmisensei-dot.github.io/ai-level</p>`;
+  }
+
+  window.SHARE_INFO = {
+    date: data.updated, demo: !!data.demo, level: lvl, levelInt: lvlInt, delta: model.delta,
+    toGo: 100 - lvlInt, tier: model.tier.name,
+    items: items.map(p => ({ id: p.id, headline: p.headline, desc: p.desc, means: p.means, boss: p.boss,
+      rarity: p.rarity, hype: p.hype, xp: p.xp, tool: p.tool, url: p.url, script: p.script,
+      domain: dom[p.domain].name }))
+  };
+  document.fonts.ready.then(() => { window.SHARE_READY = true; });
+})();
+</script>
+</body>
+</html>

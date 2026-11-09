@@ -1,2 +1,5 @@
 anthropic>=2.6,<3
 certifi
+playwright>=1.64,<2
+piper-tts>=1.8,<2
+imageio-ffmpeg>=0.6

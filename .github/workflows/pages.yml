@@ -1,0 +1,36 @@
+# Redeploys the site when code is pushed to main (the daily workflow deploys its own updates).
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["data/posted.json", "README.md", "SOCIAL.md"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: daily-scan        # never overlap with the daily scan's deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          cp index.html share.html styles.css app.js model.js data.js _site/
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+      - id: deploy
+        uses: actions/deploy-pages@v5

@@ -1,32 +1,61 @@
-# Runs the scanner every day and commits the new data.js, so a GitHub Pages site updates itself.
-# Free by default: with no secret set it uses the rule-based editor (scripts/rules.py).
-# Optional upgrade: add a repository secret ANTHROPIC_API_KEY and it switches to Claude automatically.
+# The whole daily loop, free on GitHub Actions:
+#   scan news → commit data.js → build images + narrated video → deploy the site (with media) → post to social.
+#
+# Editor: free rules by default; add secret ANTHROPIC_API_KEY to switch to Claude.
+# Posting: each platform runs only when its secrets exist (see SOCIAL.md):
+#   BLUESKY_HANDLE, BLUESKY_APP_PASSWORD, THREADS_USER_ID, THREADS_ACCESS_TOKEN
 name: Daily power-up scan
 
 on:
   schedule:
-    - cron: "0 13 * * *"   # 13:00 UTC daily (US morning, Cairo afternoon)
-  workflow_dispatch:        # "Run workflow" button for a manual scan
+    - cron: "0 13 * * *"   # 13:00 UTC daily
+  workflow_dispatch:
     inputs:
       lookback_hours:
         description: "How far back to look for news (hours)"
         default: "36"
+      force_media:
+        description: "Build media and post even if there are no new drops today"
+        type: boolean
+        default: false
 
 permissions:
-  contents: write
+  contents: write   # commit data.js and the posting log
+  pages: write      # deploy the site
+  id-token: write   # required by deploy-pages
+
+concurrency:
+  group: daily-scan
+  cancel-in-progress: false
 
 jobs:
-  scan:
+  daily:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.13"
+          cache: pip
       - run: pip install -r requirements.txt
-      - run: python scripts/scan.py --lookback-hours "${{ inputs.lookback_hours || '36' }}"
+
+      - name: Cache voice model and browser
+        uses: actions/cache@v6
+        with:
+          path: |
+            .cache/piper
+            ~/.cache/ms-playwright
+          key: media-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+      - run: python -m playwright install --with-deps chromium
+
+      - name: Scan news
+        run: python scripts/scan.py --lookback-hours "${{ inputs.lookback_hours || '36' }}"
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
       - name: Commit new power-ups
         run: |
           git config user.name "power-up-bot"
@@ -34,3 +63,42 @@ jobs:
           git add data.js data/
           git diff --cached --quiet || git commit -m "Daily scan $(date -u +%F)"
           git push
+
+      - name: Build images and video
+        run: python scripts/media.py ${{ inputs.force_media && '--force' || '' }}
+
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          cp index.html share.html styles.css app.js model.js data.js _site/
+          if [ -d media ]; then cp -r media _site/; fi
+
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+      - id: deploy
+        uses: actions/deploy-pages@v5
+
+      - name: Post to social media
+        run: python scripts/post.py
+        env:
+          BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+          THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+
+      - name: Save posting log
+        if: always()
+        run: |
+          git add data/posted.json 2>/dev/null || true
+          git diff --cached --quiet || { git commit -m "Posted $(date -u +%F)"; git pull --rebase -q; git push; }
+
+      - name: Keep the video as a download (for TikTok / YouTube)
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: media-${{ github.run_id }}
+          path: media/
+          if-no-files-found: ignore
+          retention-days: 14

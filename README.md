@@ -11,6 +11,10 @@ New AI abilities, announced like a video game, plus a running **AI LEVEL** (0–
 | `data.js` | What the site shows. **Generated** by the scanner; currently demo data. |
 | `scripts/scan.py` | Daily scanner: feeds → editor → `data/state.json` → `data.js`. |
 | `scripts/rules.py` | The free editor: keyword filters, heuristic ratings, template hype copy. |
+| `share.html` | Renders one social-media frame (level card, power-up card, outro) for screenshots. |
+| `scripts/media.py` | Daily images and a narrated vertical video (Playwright screenshots + Piper voice + ffmpeg). |
+| `scripts/post.py` | Posts to Bluesky (images) and Threads (video). See **[SOCIAL.md](SOCIAL.md)** to connect accounts. |
+| `.github/workflows/pages.yml` | Redeploys the site when code is pushed. |
 | `scripts/sources.json` | The RSS/Atom feeds to read. Add or remove freely. |
 | `data/state.json` | Permanent record of every power-up ever, plus links already seen. |
 | `data/days/<date>.json` | One file per day of drops (for a future archive page or video scripts). |
