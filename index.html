@@ -156,7 +156,8 @@
   <div class="confetti" id="confetti" aria-hidden="true"></div>
 
   <script src="model.js"></script>
-  <script src="data.js"></script>
+  <!-- data.js changes daily: a 10-minute version stamp stops browsers showing yesterday's cached copy -->
+  <script>document.write('<script src="data.js?v=' + Math.floor(Date.now() / 600000) + '"><\/script>');</script>
   <script src="app.js"></script>
 </body>
 </html>
