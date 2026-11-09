@@ -51,7 +51,11 @@ body {
   backdrop-filter: blur(6px);
 }
 .brand { display: flex; align-items: center; gap: 10px; }
-.brand-icon { font-size: 28px; color: var(--yellow); text-shadow: 0 0 12px var(--yellow); animation: bob 2s ease-in-out infinite; }
+.brand-icon {
+  display: block; width: 36px; height: 36px; flex: 0 0 auto;
+  filter: drop-shadow(3px 3px 0 #000) drop-shadow(0 0 10px rgba(255,46,136,.7));
+  animation: bob 2s ease-in-out infinite;
+}
 .brand-name { font-family: var(--pixel); font-size: 16px; line-height: 1.5; white-space: nowrap; }
 .brand-name em { font-style: normal; color: var(--pink); }
 .player { display: flex; align-items: center; gap: 10px; font-family: var(--pixel); font-size: 10px; margin-bottom: 12px; }
@@ -337,6 +341,7 @@ footer a { color: var(--cyan); }
 }
 @media (max-width: 520px) {
   .brand-name { font-size: 12px; }
+  .brand-icon { width: 28px; height: 28px; }
   .stats { grid-template-columns: repeat(2, 1fr); }
   .track { flex-direction: column; align-items: stretch; }
   .goal { flex-direction: row; margin-top: 4px; gap: 12px; padding: 14px 16px; min-width: 0; }
