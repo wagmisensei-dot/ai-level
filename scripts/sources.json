@@ -1,0 +1,16 @@
+{
+  "_comment": "RSS/Atom feeds the scanner reads every day. Add or remove freely; a feed that fails is skipped and reported, it never stops the run.",
+  "feeds": [
+    { "name": "OpenAI News",            "url": "https://openai.com/news/rss.xml" },
+    { "name": "Google AI Blog",         "url": "https://blog.google/technology/ai/rss/" },
+    { "name": "Google DeepMind",        "url": "https://deepmind.google/blog/feed/basic/" },
+    { "name": "Hugging Face Blog",      "url": "https://huggingface.co/blog/feed.xml" },
+    { "name": "Microsoft AI News",      "url": "https://news.microsoft.com/source/topics/ai/feed/" },
+    { "name": "NVIDIA Blog",            "url": "https://blogs.nvidia.com/feed/" },
+    { "name": "Simon Willison",         "url": "https://simonwillison.net/atom/everything/" },
+    { "name": "The Verge AI",           "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml" },
+    { "name": "TechCrunch AI",          "url": "https://techcrunch.com/category/artificial-intelligence/feed/" },
+    { "name": "Product Hunt",           "url": "https://www.producthunt.com/feed" },
+    { "name": "Hacker News (AI, 100+)", "url": "https://hnrss.org/newest?q=AI+OR+LLM+OR+GPT+OR+Claude+OR+Gemini&points=100" }
+  ]
+}

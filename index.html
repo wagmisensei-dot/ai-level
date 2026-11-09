@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Power-Up Daily</title>
+  <meta name="description" content="Daily AI power-ups, announced like a video game. NEW ABILITY UNLOCKED.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="crt" aria-hidden="true"></div>
+
+  <header class="top">
+    <div class="brand">
+      <span class="brand-icon" aria-hidden="true">▲</span>
+      <span class="brand-name">POWER-UP<br><em>DAILY</em></span>
+    </div>
+    <span class="mini-lvl" id="miniLvl" aria-hidden="true"></span>
+  </header>
+
+  <div class="ticker" aria-label="Today's headlines">
+    <div class="ticker-track" id="ticker"></div>
+  </div>
+
+  <section class="lvl-hero" aria-label="Current AI level">
+    <p class="lvl-kicker">⚡ AI HAS REACHED ⚡</p>
+    <p class="lvl-giant">LEVEL <span id="bannerLvl">0</span></p>
+    <p class="lvl-after">AFTER TODAY'S XP DROP <span class="up" id="bannerDelta"></span></p>
+
+    <div class="track">
+      <div class="track-main">
+        <div class="track-bar">
+          <i id="aiLvlFill"></i><s id="aiLvlGain"></s>
+          <span class="you" id="youMarker"><b id="youNum">0</b></span>
+        </div>
+        <div class="ticks" id="ticks"></div>
+      </div>
+      <div class="goal">
+        <span class="crown" aria-hidden="true">👑</span>
+        <b>LVL 100</b>
+        <span>AI TAKES OVER</span>
+      </div>
+    </div>
+    <p class="countdown"><b id="toGo">0</b> LEVELS UNTIL <em>AI TAKES OVER</em></p>
+
+    <button class="math-btn" id="aiLvlBtn" aria-expanded="false" aria-controls="lvlPanel">HOW IS THIS CALCULATED? <span class="caret" aria-hidden="true">▼</span></button>
+  </section>
+
+  <section class="lvl-panel" id="lvlPanel" hidden aria-label="AI level breakdown">
+    <div class="lvl-inner">
+      <div class="lvl-head">
+        <div>
+          <p class="eyebrow">CURRENT AI LEVEL</p>
+          <p class="big-lvl"><span id="pLevel">0</span><small>/100</small></p>
+          <p class="tier">TIER: <b id="pTier"></b></p>
+          <p class="tier-desc" id="pTierDesc"></p>
+        </div>
+        <div class="lvl-actions">
+          <p class="drop-line" id="pDrop"></p>
+          <button class="btn hype-btn" id="announceLvl">▶ ANNOUNCE LEVEL</button>
+          <button class="btn close-btn" id="closeLvl">✕ CLOSE</button>
+        </div>
+      </div>
+
+      <div class="lvl-cols">
+        <div>
+          <h2>SKILL TREES</h2>
+          <p class="small">Each domain is scored 0–100. Weight = its rough share of all human work. <span class="key base"></span> before today <span class="key gain"></span> today's XP</p>
+          <div id="pDomains"></div>
+        </div>
+
+        <div>
+          <h2>THE MATH</h2>
+          <div class="math">
+            <p><b>LEVEL</b> = ½ × Breadth + ½ × Weakest-link</p>
+            <p class="calc" id="pCalc"></p>
+            <p><b>Breadth</b> = weighted average of the domain scores. Shows how much AI can do overall.</p>
+            <p><b>Weakest-link</b> = weighted geometric mean. A low domain (like robotics) drags it down hard. Both hit 100 only when <em>every</em> domain is 100, so maxing out digital work alone can't reach Level 100.</p>
+            <p>👑 <b>Level 100 = AI TAKES OVER.</b> Every skill tree is maxed: no private companies, software products or human manual labor needed.</p>
+          </div>
+
+          <h2>HOW A DROP EARNS XP</h2>
+          <div class="math">
+            <p>Each new feature is rated 1–5 on:</p>
+            <ul>
+              <li><b>Reach</b>: how many people can use it today</li>
+              <li><b>Leap</b>: how big a jump over what came before</li>
+              <li><b>Replace</b>: how much paid software or labor it makes optional</li>
+            </ul>
+            <p><b>Impact</b> = 0.4·Reach + 0.4·Leap + 0.2·Replace</p>
+            <p><b>XP</b> = 10 × (Impact/5)² × (1 − domain score/100)</p>
+            <p class="small">The squared impact makes big drops count far more than small ones. The last term means each point is harder to earn as a domain approaches mastery.</p>
+            <p><b>Rarity</b>: Impact ≥ 4.2 <span class="r LEGENDARY">LEGENDARY</span> ≥ 3.4 <span class="r EPIC">EPIC</span> ≥ 2.6 <span class="r RARE">RARE</span>, otherwise <span class="r COMMON">COMMON</span></p>
+          </div>
+
+          <h2>TIER LADDER</h2>
+          <ol class="ladder" id="pLadder"></ol>
+        </div>
+      </div>
+      <p class="fine">Milestone checkmarks are our editorial assessment as of the last update. Open a skill tree to see every milestone. The model is open: argue with us in the comments.</p>
+    </div>
+  </section>
+
+  <main>
+    <section class="hero">
+      <p class="blink">◆ PRESS START ◆</p>
+      <h1>NEW AI POWERS<br><span class="glow">UNLOCKED TODAY</span></h1>
+      <p class="sub">Every day we scan the AI world for new abilities and tell you what they <strong>actually mean for you</strong>. Loudly.</p>
+      <div class="stats" id="stats"></div>
+      <p class="demo-badge" id="demoBadge" hidden>DEMO LOADOUT: sample data until the daily scanner goes live</p>
+    </section>
+
+    <section class="controls" aria-label="Filters">
+      <div class="chips" id="categoryChips" role="group" aria-label="Category"></div>
+      <div class="chips" id="rarityChips" role="group" aria-label="Rarity"></div>
+    </section>
+
+    <div class="layout">
+      <section class="grid" id="grid" aria-live="polite"></section>
+
+      <aside class="side">
+        <div class="panel">
+          <h2>🎮 YOUR PLAYER</h2>
+          <div class="player">
+            <span class="lvl">LVL <b id="lvl">1</b></span>
+            <div class="xpbar"><div id="xpfill"></div></div>
+            <span class="xp"><b id="xp">0</b> XP</span>
+          </div>
+          <p class="small">Earn XP every time you hype a power-up.</p>
+        </div>
+        <div class="panel">
+          <h2>🏆 HIGH SCORES</h2>
+          <ol class="leader" id="leader"></ol>
+        </div>
+        <div class="panel">
+          <h2>💀 BOSSES DEFEATED</h2>
+          <ul class="bosses" id="bosses"></ul>
+        </div>
+        <div class="panel">
+          <h2>🎙️ ANNOUNCER</h2>
+          <p class="small">Hit <b>HYPE IT</b> on any card and the champion announcer reads it out loud.</p>
+          <label class="toggle"><input type="checkbox" id="voiceToggle" checked> Voice on</label>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <p>Updated <span id="updated"></span> · INSERT COIN TO CONTINUE · <a href="#" id="toTop">▲ BACK TO TOP</a></p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="confetti" id="confetti" aria-hidden="true"></div>
+
+  <script src="model.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
