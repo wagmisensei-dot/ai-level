@@ -550,6 +550,44 @@
       "source": "TechCrunch AI",
       "sourceUrl": "https://techcrunch.com/2026/11/12/muse-can-now-place-calls-to-u-s-businesses-if-you-pay/",
       "editor": "rules"
+    },
+    {
+      "id": "businesses-in-chatgpt-help-customers-discover-your-business-",
+      "date": "2026-11-14",
+      "category": "RESEARCH",
+      "domain": "KNOWLEDGE",
+      "reach": 3,
+      "leap": 2,
+      "replace": 2,
+      "tool": "Businesses in ChatGPT",
+      "url": "https://www.producthunt.com/products/openai",
+      "headline": "BUSINESSES IN CHATGPT: HELP CUSTOMERS DISCOVER YOUR BUSINESS THROUGH CHATGPT",
+      "desc": "Help customers discover your business through ChatGPT",
+      "means": "YOUR AI JUST GOT SMARTER",
+      "boss": "Forty open browser tabs",
+      "script": "Attention, players! Businesses in ChatGPT just dropped a new power! Businesses in ChatGPT: Help customers discover your business through ChatGPT! That means YOUR AI JUST GOT SMARTER! Forty open browser tabs? DEFEATED! FLAWLESS VICTORY!",
+      "source": "Product Hunt",
+      "sourceUrl": "https://www.producthunt.com/products/openai",
+      "editor": "rules"
+    },
+    {
+      "id": "codemesh-cut-ai-coding-costs-by-90",
+      "date": "2026-11-14",
+      "category": "CODING",
+      "domain": "CODING",
+      "reach": 2,
+      "leap": 2,
+      "replace": 2,
+      "tool": "CodeMesh",
+      "url": "https://www.producthunt.com/products/codemesh-2",
+      "headline": "CODEMESH: CUT AI CODING COSTS BY 90%",
+      "desc": "CodeMesh: Cut AI coding costs by 90%",
+      "means": "YOU CAN SHIP FASTER THAN EVER",
+      "boss": "Boilerplate code",
+      "script": "Stop what you're doing! CodeMesh just dropped a new power! CodeMesh: Cut AI coding costs by 90%! That means YOU CAN SHIP FASTER THAN EVER! Boilerplate code? DEFEATED! THE CROWD GOES WILD!",
+      "source": "Product Hunt",
+      "sourceUrl": "https://www.producthunt.com/products/codemesh-2",
+      "editor": "rules"
     }
   ],
   "seen": [
@@ -960,7 +998,26 @@
     "https://antigravity.google/blog/gemini-4-hydrogen-in-google-antigravity/",
     "https://www.producthunt.com/products/gemini-6",
     "https://www.producthunt.com/products/expo",
-    "https://openai.com/business/customer-stories/gondola"
+    "https://openai.com/business/customer-stories/gondola",
+    "https://techcrunch.com/2026/11/14/the-ai-graveyard-a-running-list-of-projects-and-startups-that-didnt-make-it/",
+    "https://techcrunch.com/2026/11/14/asian-governments-react-to-nvidia-ceo-jensen-huangs-exit/",
+    "https://www.theverge.com/tech/1033781/nvidia-jensen-huang-last-visionary-showman-founder-ceo",
+    "https://www.netmeister.org/blog/claude-delusion.html",
+    "https://www.techpowerup.com/354814/nvidia-allegedly-engineered-scarcity-by-funding-ai-startups-to-buy-its-gpus",
+    "https://www.theverge.com/podcast/1032907/helen-toner-openai-cset-ai-safety-policy-interview",
+    "https://www.theverge.com/tech/1033697/amazon-world-product-graph-ai-search",
+    "https://simonwillison.net/2026/Nov/13/datasette-cluster-map/",
+    "https://techcrunch.com/2026/11/13/jensen-huangs-departure-blasts-big-hole-in-ai-startup-funding-vcs-and-founders-say/",
+    "https://claude.com/resources/articles/claude-meetings",
+    "https://simonwillison.net/2026/Nov/13/datasette-leaflet/",
+    "https://www.producthunt.com/products/thunder-3",
+    "https://www.theverge.com/ai-artificial-intelligence/1033425/openai-chatgpt-wallet",
+    "https://www.slopmanifesto.com/",
+    "https://www.producthunt.com/products/tacie",
+    "https://www.producthunt.com/products/google-labs",
+    "https://www.producthunt.com/products/codemesh-2",
+    "https://www.producthunt.com/products/openai",
+    "https://openai.com/business/customer-stories/shield"
   ],
-  "lastRun": "2026-11-13T20:09:36+00:00"
+  "lastRun": "2026-11-14T18:36:03+00:00"
 }
