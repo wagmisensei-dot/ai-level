@@ -1,0 +1,40 @@
+[
+  {
+    "id": "undoguard-the-ctrl-z-button-for-autonomous-ai-agents",
+    "date": "2026-11-20",
+    "category": "AGENTS",
+    "domain": "AUTONOMY",
+    "reach": 2,
+    "leap": 3,
+    "replace": 4,
+    "tool": "UndoGuard",
+    "url": "https://www.producthunt.com/products/undoguard",
+    "headline": "UNDOGUARD: THE CTRL+Z BUTTON FOR AUTONOMOUS AI AGENTS",
+    "desc": "The Ctrl+Z button for autonomous AI agents",
+    "means": "AI CAN NOW DO MORE OF THE CLICKING FOR YOU",
+    "boss": "Repetitive clicking",
+    "script": "Ladies and gentlemen! UndoGuard just dropped a new power! UndoGuard: The Ctrl+Z button for autonomous AI agents! That means AI CAN NOW DO MORE OF THE CLICKING FOR YOU! Repetitive clicking? DEFEATED! NEW POWER UNLOCKED!",
+    "source": "Product Hunt",
+    "sourceUrl": "https://www.producthunt.com/products/undoguard",
+    "editor": "rules"
+  },
+  {
+    "id": "veryfi-thinking-mode-ai-agents-review-and-correct-receipt-an",
+    "date": "2026-11-20",
+    "category": "AGENTS",
+    "domain": "AUTONOMY",
+    "reach": 2,
+    "leap": 2,
+    "replace": 4,
+    "tool": "Veryfi Thinking Mode",
+    "url": "https://www.producthunt.com/products/veryfi",
+    "headline": "VERYFI THINKING MODE: AI AGENTS REVIEW AND CORRECT RECEIPT AND INVOICE DATA",
+    "desc": "AI agents review and correct receipt and invoice data.",
+    "means": "AI CAN NOW DO MORE OF THE CLICKING FOR YOU",
+    "boss": "Copy-paste busywork",
+    "script": "Stop what you're doing! Veryfi Thinking Mode just dropped a new power! Veryfi Thinking Mode: AI agents review and correct receipt and invoice data! That means AI CAN NOW DO MORE OF THE CLICKING FOR YOU! Copy-paste busywork? DEFEATED! LEVEL UP!",
+    "source": "Product Hunt",
+    "sourceUrl": "https://www.producthunt.com/products/veryfi",
+    "editor": "rules"
+  }
+]
