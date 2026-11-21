@@ -1,0 +1,40 @@
+[
+  {
+    "id": "gitroots-path-level-github-access-for-developers-and-ai-agen",
+    "date": "2026-11-21",
+    "category": "CODING",
+    "domain": "CODING",
+    "reach": 3,
+    "leap": 2,
+    "replace": 3,
+    "tool": "gitroots",
+    "url": "https://www.producthunt.com/products/gitroots",
+    "headline": "GITROOTS: PATH-LEVEL GITHUB ACCESS FOR DEVELOPERS AND AI AGENTS",
+    "desc": "Path-level GitHub access for developers and AI agents",
+    "means": "LESS TIME DEBUGGING, MORE TIME BUILDING",
+    "boss": "Waiting on code reviews",
+    "script": "Attention, players! gitroots just dropped a new power! gitroots: Path-level GitHub access for developers and AI agents! That means LESS TIME DEBUGGING, MORE TIME BUILDING! Waiting on code reviews? DEFEATED! GAME ON!",
+    "source": "Product Hunt",
+    "sourceUrl": "https://www.producthunt.com/products/gitroots",
+    "editor": "rules"
+  },
+  {
+    "id": "stitch-loop-google-s-ai-agent-that-ships-fixes-and-watches-t",
+    "date": "2026-11-21",
+    "category": "AGENTS",
+    "domain": "AUTONOMY",
+    "reach": 3,
+    "leap": 2,
+    "replace": 4,
+    "tool": "Stitch Loop",
+    "url": "https://www.producthunt.com/products/stitch-loop",
+    "headline": "STITCH LOOP: GOOGLE’S AI AGENT THAT SHIPS FIXES AND WATCHES THE METRIC",
+    "desc": "Google’s AI agent that ships fixes and watches the metric",
+    "means": "AI CAN NOW DO MORE OF THE CLICKING FOR YOU",
+    "boss": "Tab-switching marathons",
+    "script": "Ladies and gentlemen! Stitch Loop just dropped a new power! Stitch Loop: Google’s AI agent that ships fixes and watches the metric! That means AI CAN NOW DO MORE OF THE CLICKING FOR YOU! Tab-switching marathons? DEFEATED! THE CROWD GOES WILD!",
+    "source": "Product Hunt",
+    "sourceUrl": "https://www.producthunt.com/products/stitch-loop",
+    "editor": "rules"
+  }
+]

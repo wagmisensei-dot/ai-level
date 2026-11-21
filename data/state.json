@@ -1120,6 +1120,44 @@
       "source": "Product Hunt",
       "sourceUrl": "https://www.producthunt.com/products/veryfi",
       "editor": "rules"
+    },
+    {
+      "id": "gitroots-path-level-github-access-for-developers-and-ai-agen",
+      "date": "2026-11-21",
+      "category": "CODING",
+      "domain": "CODING",
+      "reach": 3,
+      "leap": 2,
+      "replace": 3,
+      "tool": "gitroots",
+      "url": "https://www.producthunt.com/products/gitroots",
+      "headline": "GITROOTS: PATH-LEVEL GITHUB ACCESS FOR DEVELOPERS AND AI AGENTS",
+      "desc": "Path-level GitHub access for developers and AI agents",
+      "means": "LESS TIME DEBUGGING, MORE TIME BUILDING",
+      "boss": "Waiting on code reviews",
+      "script": "Attention, players! gitroots just dropped a new power! gitroots: Path-level GitHub access for developers and AI agents! That means LESS TIME DEBUGGING, MORE TIME BUILDING! Waiting on code reviews? DEFEATED! GAME ON!",
+      "source": "Product Hunt",
+      "sourceUrl": "https://www.producthunt.com/products/gitroots",
+      "editor": "rules"
+    },
+    {
+      "id": "stitch-loop-google-s-ai-agent-that-ships-fixes-and-watches-t",
+      "date": "2026-11-21",
+      "category": "AGENTS",
+      "domain": "AUTONOMY",
+      "reach": 3,
+      "leap": 2,
+      "replace": 4,
+      "tool": "Stitch Loop",
+      "url": "https://www.producthunt.com/products/stitch-loop",
+      "headline": "STITCH LOOP: GOOGLE’S AI AGENT THAT SHIPS FIXES AND WATCHES THE METRIC",
+      "desc": "Google’s AI agent that ships fixes and watches the metric",
+      "means": "AI CAN NOW DO MORE OF THE CLICKING FOR YOU",
+      "boss": "Tab-switching marathons",
+      "script": "Ladies and gentlemen! Stitch Loop just dropped a new power! Stitch Loop: Google’s AI agent that ships fixes and watches the metric! That means AI CAN NOW DO MORE OF THE CLICKING FOR YOU! Tab-switching marathons? DEFEATED! THE CROWD GOES WILD!",
+      "source": "Product Hunt",
+      "sourceUrl": "https://www.producthunt.com/products/stitch-loop",
+      "editor": "rules"
     }
   ],
   "seen": [
@@ -1827,7 +1865,20 @@
     "https://www.producthunt.com/products/stormi",
     "https://www.producthunt.com/products/andromon",
     "https://www.producthunt.com/products/rox-2",
-    "https://www.producthunt.com/products/tamekoshi"
+    "https://www.producthunt.com/products/tamekoshi",
+    "https://techcrunch.com/2026/11/21/all-the-ai-agents-that-can-live-in-your-text-messages/",
+    "https://techcrunch.com/2026/11/21/is-selling-an-ai-version-of-your-face-to-this-microdrama-startup-the-future-of-hollywood/",
+    "https://www.theverge.com/podcast/1038701/anthropic-ipo-ai-safety-openai-nvidia-structure",
+    "http://ricapar.net/ClawDOS/",
+    "https://www.producthunt.com/products/waitfeed-2",
+    "https://www.producthunt.com/products/stitch-loop",
+    "https://www.producthunt.com/products/smorza",
+    "https://www.motherjones.com/politics/2026/11/google-alphabet-union-school-ai-protest-gemini-workers-petition/",
+    "https://a90.com/experiments/same-advice/",
+    "https://www.theguardian.com/business/2026/nov/20/global-stock-markets-slump-anthropic-ipo-ai-sell-off",
+    "https://www.producthunt.com/products/gitroots",
+    "https://architectlabs.com/blog/frostbite",
+    "https://signal.org/blog/protecting-your-privacy/"
   ],
-  "lastRun": "2026-11-20T20:51:11+00:00"
+  "lastRun": "2026-11-21T19:52:38+00:00"
 }
