@@ -1158,6 +1158,44 @@
       "source": "Product Hunt",
       "sourceUrl": "https://www.producthunt.com/products/stitch-loop",
       "editor": "rules"
+    },
+    {
+      "id": "omi-cli-ai-coding-agents-that-work-while-you-re-away",
+      "date": "2026-11-22",
+      "category": "CODING",
+      "domain": "CODING",
+      "reach": 2,
+      "leap": 2,
+      "replace": 3,
+      "tool": "Omi CLI",
+      "url": "https://www.producthunt.com/products/omi-cli",
+      "headline": "OMI CLI: AI CODING AGENTS THAT WORK WHILE YOU'RE AWAY",
+      "desc": "AI coding agents that work while you're away.",
+      "means": "LESS TIME DEBUGGING, MORE TIME BUILDING",
+      "boss": "Waiting on code reviews",
+      "script": "Attention, players! Omi CLI just dropped a new power! Omi CLI: AI coding agents that work while you're away! That means LESS TIME DEBUGGING, MORE TIME BUILDING! Waiting on code reviews? DEFEATED! FLAWLESS VICTORY!",
+      "source": "Product Hunt",
+      "sourceUrl": "https://www.producthunt.com/products/omi-cli",
+      "editor": "rules"
+    },
+    {
+      "id": "oovi-your-own-team-of-ai-on-your-desktop",
+      "date": "2026-11-22",
+      "category": "RESEARCH",
+      "domain": "KNOWLEDGE",
+      "reach": 2,
+      "leap": 2,
+      "replace": 2,
+      "tool": "oovi",
+      "url": "https://www.producthunt.com/products/oovi",
+      "headline": "OOVI: YOUR OWN TEAM OF AI ON YOUR DESKTOP",
+      "desc": "Your own team of AI on your desktop",
+      "means": "ANSWERS GET FASTER AND BETTER",
+      "boss": "Forty open browser tabs",
+      "script": "Ladies and gentlemen! oovi just dropped a new power! oovi: Your own team of AI on your desktop! That means ANSWERS GET FASTER AND BETTER! Forty open browser tabs? DEFEATED! FLAWLESS VICTORY!",
+      "source": "Product Hunt",
+      "sourceUrl": "https://www.producthunt.com/products/oovi",
+      "editor": "rules"
     }
   ],
   "seen": [
@@ -1878,7 +1916,21 @@
     "https://www.theguardian.com/business/2026/nov/20/global-stock-markets-slump-anthropic-ipo-ai-sell-off",
     "https://www.producthunt.com/products/gitroots",
     "https://architectlabs.com/blog/frostbite",
-    "https://signal.org/blog/protecting-your-privacy/"
+    "https://signal.org/blog/protecting-your-privacy/",
+    "https://techcrunch.com/2026/11/22/why-data-centers-are-at-the-center-of-the-big-tech-backlash/",
+    "https://www.theverge.com/games/1039770/binding-of-isaac-ai-music",
+    "https://github.com/gulivan/worker755",
+    "https://www.noemamag.com/the-mythology-of-conscious-ai/",
+    "https://openai.com/index/perplexity-and-intelligence",
+    "https://simonwillison.net/2026/Nov/21/muru/",
+    "https://techcrunch.com/2026/11/21/signal-restricts-mobile-screenshots-as-it-confronts-existential-threat-of-ai-surveillance/",
+    "https://techcrunch.com/2026/11/21/a-tale-of-two-nvidias/",
+    "https://www.pandex.io",
+    "https://www.theverge.com/tech/1039554/un-regulations-killer-robots",
+    "https://www.producthunt.com/products/oovi",
+    "https://www.producthunt.com/products/resurf-2",
+    "https://www.producthunt.com/products/verge-corner-controls",
+    "https://www.producthunt.com/products/omi-cli"
   ],
-  "lastRun": "2026-11-21T19:52:38+00:00"
+  "lastRun": "2026-11-22T20:02:53+00:00"
 }

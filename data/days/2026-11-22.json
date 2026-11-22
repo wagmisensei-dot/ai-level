@@ -1,0 +1,40 @@
+[
+  {
+    "id": "omi-cli-ai-coding-agents-that-work-while-you-re-away",
+    "date": "2026-11-22",
+    "category": "CODING",
+    "domain": "CODING",
+    "reach": 2,
+    "leap": 2,
+    "replace": 3,
+    "tool": "Omi CLI",
+    "url": "https://www.producthunt.com/products/omi-cli",
+    "headline": "OMI CLI: AI CODING AGENTS THAT WORK WHILE YOU'RE AWAY",
+    "desc": "AI coding agents that work while you're away.",
+    "means": "LESS TIME DEBUGGING, MORE TIME BUILDING",
+    "boss": "Waiting on code reviews",
+    "script": "Attention, players! Omi CLI just dropped a new power! Omi CLI: AI coding agents that work while you're away! That means LESS TIME DEBUGGING, MORE TIME BUILDING! Waiting on code reviews? DEFEATED! FLAWLESS VICTORY!",
+    "source": "Product Hunt",
+    "sourceUrl": "https://www.producthunt.com/products/omi-cli",
+    "editor": "rules"
+  },
+  {
+    "id": "oovi-your-own-team-of-ai-on-your-desktop",
+    "date": "2026-11-22",
+    "category": "RESEARCH",
+    "domain": "KNOWLEDGE",
+    "reach": 2,
+    "leap": 2,
+    "replace": 2,
+    "tool": "oovi",
+    "url": "https://www.producthunt.com/products/oovi",
+    "headline": "OOVI: YOUR OWN TEAM OF AI ON YOUR DESKTOP",
+    "desc": "Your own team of AI on your desktop",
+    "means": "ANSWERS GET FASTER AND BETTER",
+    "boss": "Forty open browser tabs",
+    "script": "Ladies and gentlemen! oovi just dropped a new power! oovi: Your own team of AI on your desktop! That means ANSWERS GET FASTER AND BETTER! Forty open browser tabs? DEFEATED! FLAWLESS VICTORY!",
+    "source": "Product Hunt",
+    "sourceUrl": "https://www.producthunt.com/products/oovi",
+    "editor": "rules"
+  }
+]
