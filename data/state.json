@@ -1443,6 +1443,44 @@
       "source": "Product Hunt",
       "sourceUrl": "https://www.producthunt.com/products/monton",
       "editor": "rules"
+    },
+    {
+      "id": "depost-ai-the-linkedin-ai-agent-that-learns-what-works-for-y",
+      "date": "2026-11-27",
+      "category": "AGENTS",
+      "domain": "AUTONOMY",
+      "reach": 2,
+      "leap": 2,
+      "replace": 4,
+      "tool": "Depost AI",
+      "url": "https://www.producthunt.com/products/depost-ai",
+      "headline": "DEPOST AI: THE LINKEDIN AI AGENT THAT LEARNS WHAT WORKS FOR YOUR BRAND",
+      "desc": "The LinkedIn AI agent that learns what works for your brand",
+      "means": "YOU GET TO BE THE BOSS, AI DOES THE TASKS",
+      "boss": "Repetitive clicking",
+      "script": "Stop what you're doing! Depost AI just dropped a new power! Depost AI: The LinkedIn AI agent that learns what works for your brand! That means YOU GET TO BE THE BOSS, AI DOES THE TASKS! Repetitive clicking? DEFEATED! GAME ON!",
+      "source": "Product Hunt",
+      "sourceUrl": "https://www.producthunt.com/products/depost-ai",
+      "editor": "rules"
+    },
+    {
+      "id": "ploid-people-search-for-ai-agents-across-2b-profiles",
+      "date": "2026-11-27",
+      "category": "AGENTS",
+      "domain": "AUTONOMY",
+      "reach": 2,
+      "leap": 2,
+      "replace": 4,
+      "tool": "Ploid",
+      "url": "https://www.producthunt.com/products/ploid",
+      "headline": "PLOID: PEOPLE SEARCH FOR AI AGENTS, ACROSS 2B+ PROFILES",
+      "desc": "People search for AI agents, across 2B+ profiles",
+      "means": "THE BORING HALF OF YOUR TO-DO LIST JUST GOT A ROBOT",
+      "boss": "Tab-switching marathons",
+      "script": "Stop what you're doing! Ploid just dropped a new power! Ploid: People search for AI agents, across 2B+ profiles! That means THE BORING HALF OF YOUR TO-DO LIST JUST GOT A ROBOT! Tab-switching marathons? DEFEATED! FLAWLESS VICTORY!",
+      "source": "Product Hunt",
+      "sourceUrl": "https://www.producthunt.com/products/ploid",
+      "editor": "rules"
     }
   ],
   "seen": [
@@ -2351,7 +2389,22 @@
     "https://www.producthunt.com/products/nexus-42",
     "https://www.producthunt.com/products/infrathrone-devops-park",
     "https://www.producthunt.com/products/postmaster-of-puppets",
-    "https://www.producthunt.com/products/focushaze"
+    "https://www.producthunt.com/products/focushaze",
+    "https://thesoapbox.email/archive/3",
+    "https://generativehistory.substack.com/p/gpt-62-astra-solves-a-historical",
+    "https://www.thetimes.com/uk/technology-uk/article/ai-making-online-security-useless-smr73d3n8",
+    "https://twitter.com/RealAstropulse/status/2126119408997466389",
+    "https://construct22.com/",
+    "https://www.producthunt.com/products/woomool",
+    "https://herecomesthemoon.net/2026/11/whats-claudes-fursona/",
+    "https://www.producthunt.com/products/depost-ai",
+    "https://huggingface.co/blog/video-trainium3",
+    "https://www.producthunt.com/products/rightfont",
+    "https://janlukas.blog/posts/ai-self-hosting",
+    "https://www.producthunt.com/products/ploid",
+    "https://www.producthunt.com/products/form-action-store",
+    "https://www.producthunt.com/products/onset",
+    "https://diseasescuredbyai.com/"
   ],
-  "lastRun": "2026-11-26T22:01:02+00:00"
+  "lastRun": "2026-11-27T21:44:27+00:00"
 }
